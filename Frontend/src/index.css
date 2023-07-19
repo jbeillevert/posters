@@ -2,26 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@font-face {
+    font-family: 'worksans';
+    src: url('./01.assets/03.fonts/worksans-variable.ttf'),
+  }
 
 .sukui-h1 {
-    @apply text-slate-900 text-5xl font-extrabold
+    @apply text-slate-900 text-5xl font-extrabold font-font1
 }
 
 .sukui-h2 {
-    @apply text-slate-800 text-4xl font-extrabold
+    @apply text-blaaack text-5xl -tracking-wider font-extrabold font-font1
 }
 
 .sukui-h3 {
-    @apply text-slate-800 text-2xl font-semibold
+    @apply text-blaaack text-2xl font-bold
 }
 
 .sukui-p {
-    @apply text-slate-600 text-lg
+    @apply text-slate-600 text-lg font-font1
 }
 
 .sukui-button {
-    @apply bg-slate-900 text-slate-100 py-3 px-5 rounded-lg font-semibold duration-500;
+    @apply bg-slate-900 text-slate-100 py-3 px-5 rounded-lg font-font1 font-semibold duration-500;
 }
 
 .sukui-button:hover {
@@ -29,15 +32,15 @@
 }
 
 .sukui-button2 {
-    @apply bg-slate-100 text-slate-900 border border-slate-300 py-3 px-5 rounded-lg font-semibold;
+    @apply bg-slate-100 text-slate-900 border border-slate-300 py-3 px-5 rounded-lg font-font1 font-semibold;
 }
 
 .sukui-label {
-    @apply text-slate-800 text-lg font-medium block
+    @apply text-slate-800 text-lg font-medium block font-font1
 }
 
 .sukui-input {
-    @apply border border-slate-300 text-slate-500 py-3 px-5 rounded-lg bg-slate-100 w-full duration-700
+    @apply border border-slate-300 text-slate-500 py-3 px-5 rounded-lg bg-slate-100 w-full font-font1 duration-700
 }
 
 .sukui-input:focus {
@@ -45,5 +48,18 @@
 }
 
 .sukui-select {
-    @apply border border-slate-300 text-slate-500 py-3 px-5 rounded-lg bg-slate-100 w-full outline-none
+    @apply border border-slate-300 text-slate-500 py-3 px-5 rounded-lg bg-slate-100 w-full font-font1 outline-none
+}
+
+
+/* dashboard */
+
+.sukui-sidebar {
+    @apply h-full min-w-[128px] fixed
+}
+
+.sukui-contentDashboard {
+    width: calc(100% - 128px); /* 144px = indiquer la largeur de la sidebar */
+    margin-left: 158px;
+    margin-right: 30px;
 }
