@@ -4,7 +4,7 @@ import Pastilles from './Pastilles';
 
 
 
-const WrapperPastilles = ({ setPosterColor }) => {
+const WrapperPastilles = ({ wrapperVisibility, exitAnimation }) => {
     const [colors, setColors] = useState([])
 
 
@@ -15,17 +15,37 @@ const WrapperPastilles = ({ setPosterColor }) => {
     }, []);
 
 
+    useEffect(() => {
+        const wrapper = document.querySelector('#wrapperPastilles')
+
+        if (wrapperVisibility) {
+            wrapper.classList.add('sukui-wrapper-translate-entry')
+
+            setTimeout(() => {
+                wrapper.classList.remove('sukui-wrapper-translate-entry')
+            }, 800)
+        }
+
+        if (exitAnimation) {
+            wrapper.classList.add('sukui-wrapper-translate-exit')
+
+            setTimeout(() => {
+                wrapper.classList.remove('sukui-wrapper-translate-exit')
+            }, 800)
+        }
+    }, [wrapperVisibility, exitAnimation])
+
+
+
     return (
-        <div className='h-fit w-7 flex flex-col gap-4'> 
+        <div id='wrapperPastilles' className='h-fit w-7 flex flex-col gap-4'> 
 
             {
-            
                 colors.map((color) => (
                 <Pastilles 
                     key={color.color_id} 
-                    colorPastille={color.color_code}
-                    setPosterColor={setPosterColor}
                     colorId={color.color_id} 
+                    colorCode={color.color_code}
                 />))
             }
         </div>
