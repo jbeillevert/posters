@@ -4,12 +4,15 @@ const database = require("../../database")
 // Create 
 
 const createOnePoster = (req, res) => {
-    const { id_colors } = req.body;
+    const { id_color } = req.body;
 
     database
-        .query('INSERT INTO posters (posters_text, id_colors) VALUES (?, ?)', ['', id_colors])
+        .query('INSERT INTO posters (poster_text, id_color) VALUES (?, ?)', ['', id_color])
         .then(() => res.status(201).send("Poster created"))
-        .catch((err) => res.status(500).send("Error creating a new poster", err))
+        .catch((err) => {
+            res.status(500).send("Error creating a new poster")
+            console.error(err)
+        })
 }
 
 
@@ -18,7 +21,7 @@ const createOnePoster = (req, res) => {
 const getAllPosters = (req, res) => {
 
     database
-        .query("SELECT * FROM posters")
+        .query("SELECT * FROM posters JOIN colors ON posters.id_color = colors.color_id ORDER BY posters.poster_date DESC")
         .then(([posters]) => res.json(posters))
         .catch((err) => res.status(500).send("Error getting data from database", err))
 }
@@ -27,12 +30,12 @@ const getAllPosters = (req, res) => {
 
 const updateOnePoster = (req, res) => {
     const postersId = Number(req.params.postersId);
-    const { posters_text, id_colors } = req.body;
+    const { poster_text, id_color } = req.body;
 
     database
-        .query('UPDATE posters SET posters_text = ?, id_colors = ? WHERE posters_id = ?', [posters_text, id_colors, postersId])
+        .query('UPDATE posters SET poster_text = ?, id_color = ? WHERE poster_id = ?', [poster_text, id_color, postersId])
         .then(() => res.send("Poster updated"))
-        .catch((err) => res.status(500).send("Error updating poster", err))
+        .catch((err) => res.status(500).send(err))
 }
 
 
@@ -42,9 +45,9 @@ const deleteOnePoster = (req, res) => {
     const postersId = Number(req.params.postersId);
 
     database
-        .query('DELETE FROM posters WHERE posters_id = ?', [postersId])
+        .query('DELETE FROM posters WHERE poster_id = ?', [postersId])
         .then(() => res.send("Poster deleted"))
-        .catch((err) => res.status(500).send("Error deleting poster", err))
+        .catch((err) => res.status(500).send(err))
 }
 
 

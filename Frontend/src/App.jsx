@@ -6,7 +6,9 @@ function App() {
 
   return (
     <div className="h-screen">
-      <HomePage />
+
+        <HomePage />
+
 
      
 
